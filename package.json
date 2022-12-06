@@ -1,0 +1,19 @@
+{
+  "name": "casbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/bolt": "^3.12.2",
+    "aws-sdk": "^2.1268.0",
+    "serverless-dynamodb-local": "^0.2.40"
+  },
+  "devDependencies": {
+    "serverless-offline": "^11.3.0"
+  }
+}

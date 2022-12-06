@@ -1,0 +1,20 @@
+service: casbot
+frameworkVersion: '3'
+useDotenv: true
+provider:
+  name: aws
+  deploymentMethod: direct
+  runtime: nodejs14.x
+  environment:
+    SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
+    SLACK_BOT_TOKEN: ${env:SLACK_BOT_TOKEN}
+functions:
+  slack:
+    handler: app.handler
+    events:
+      - http:
+          path: slack/events
+          method: post
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
