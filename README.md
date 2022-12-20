@@ -10,5 +10,7 @@ To plug into Slack locally:
 
 `serverless deploy`
 
+`serverless deploy function -f slack`
+
 https://5i0038ta3i.execute-api.us-east-1.amazonaws.com/dev/slack/events
 

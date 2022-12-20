@@ -1,10 +1,26 @@
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
-const {saveLearning} = require("./src/learnings/learnings");
+const {saveLearning, getLearnings} = require("./src/learnings/learnings");
+const { initializeApp } = require('firebase/app');
+const { getDatabase } = require('firebase/database');
 
 // Initialize your custom receiver
 const awsLambdaReceiver = new AwsLambdaReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAOtPkzvMzOEPShfJMFzVtbU644wU_CnxE",
+  authDomain: "casbot-80caa.firebaseapp.com",
+  projectId: "casbot-80caa",
+  storageBucket: "casbot-80caa.appspot.com",
+  messagingSenderId: "144957664758",
+  appId: "1:144957664758:web:7ea9f0847dc52bffd46bd7",
+  measurementId: "G-XM5V1TJ277",
+  databaseURL: "https://casbot-80caa-default-rtdb.firebaseio.com"
+};
+
+const fbase = initializeApp(firebaseConfig);
+const database = getDatabase(fbase);
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -45,12 +61,13 @@ app.message('rock', async ({ message, say }) => {
   });
 });
 
-app.command('/franklin', async ({ command, ack, respond }) => {
+app.command('/franklin', async ({ command, ack, respond, logger }) => {
   // Acknowledge command request
   await ack();
 
-  if (command.text === 'get learnings') {
-    await respond('looking up...');
+  if (command.text.startsWith('get learnings')) {
+    //await respond();
+    await getLearnings(database, logger, respond);
   } else {
     await respond('not implemented yet');
   }
@@ -161,12 +178,59 @@ app.shortcut('franklin_learning', async ({ shortcut, ack, client, logger }) => {
           {
             "type": "input",
             "element": {
-              "type": "plain_text_input",
-              "action_id": "cp_input-action"
+              "type": "static_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "Select a Project",
+                "emoji": true
+              },
+              "options": [
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Graco",
+                    "emoji": true
+                  },
+                  "value": "graco"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Merative",
+                    "emoji": true
+                  },
+                  "value": "merative"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Maidenform",
+                    "emoji": true
+                  },
+                  "value": "maidenform"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Keysight",
+                    "emoji": true
+                  },
+                  "value": "keysight"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Eder Group",
+                    "emoji": true
+                  },
+                  "value": "eder group"
+                }
+              ],
+              "action_id": "project_select-action"
             },
             "label": {
               "type": "plain_text",
-              "text": "Customer / Project",
+              "text": "Project",
               "emoji": true
             }
           },
@@ -196,7 +260,8 @@ app.shortcut('franklin_learning', async ({ shortcut, ack, client, logger }) => {
 
 app.view('f_learnings', async ({ ack, body, view, client, logger }) => {
   await ack();
-  await saveLearning(app, view, logger);
+  const user = body.user.name;
+  await saveLearning(app, view, logger, database, user);
 });
 
 // Handle the Lambda function event
