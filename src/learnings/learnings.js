@@ -1,4 +1,5 @@
 const { ref, set, get, child } = require('firebase/database');
+const fetch  = require("node-fetch");
 
 async function saveLearning(app, payload, logger, db, user) {
     let category;
@@ -22,16 +23,26 @@ async function saveLearning(app, payload, logger, db, user) {
         }
 
     });
-    writeData(db, category, project, learning, user);
+    writeData(db, category, project, learning, user, logger);
 }
 
-function writeData(db, cat, proj, learn, user) {
-    set(ref(db, 'learnings/'+ Date.now()), {
-        category: cat,
-        project: proj,
-        learning: learn,
-        user: user
+function writeData(db, cat, proj, learn, user, logger) {
+    const DateNow = Date.now();
+    let post = new URLSearchParams( {
+        'date': new Date(DateNow).toString(),
+        'user': user,
+        'project': proj,
+        'category': cat,
+        'learning': learn
     });
+    fetch('https://main--cashub--dkuntze.hlx.page/casbot-franklin-findings', {method: "POST", headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: post})
+        .then((response) => {
+            if (response.ok) {
+                logger.info('yeah!')
+            } else {
+                logger.info('failure' + response.status);
+            }
+        });
 }
 
 async function getLearnings(db, log, res) {

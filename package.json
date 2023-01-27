@@ -12,6 +12,7 @@
     "@slack/bolt": "^3.12.2",
     "aws-sdk": "^2.1268.0",
     "firebase": "^9.14.0",
+    "node-fetch": "^2.6.8",
     "serverless-dynamodb-local": "^0.2.40"
   },
   "devDependencies": {
