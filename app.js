@@ -188,7 +188,7 @@ app.shortcut('franklin_learning', async ({ shortcut, ack, client, logger }) => {
                 {
                   "text": {
                     "type": "plain_text",
-                    "text": "Graco",
+                    "text": "Graco - Airlessco",
                     "emoji": true
                   },
                   "value": "graco"
@@ -223,7 +223,127 @@ app.shortcut('franklin_learning', async ({ shortcut, ack, client, logger }) => {
                     "text": "Eder Group",
                     "emoji": true
                   },
-                  "value": "eder group"
+                  "value": "eder-group"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Nedbank Personal",
+                    "emoji": true
+                  },
+                  "value": "nedbank-personal"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Elco - Ariston",
+                    "emoji": true
+                  },
+                  "value": "elco-ariston"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Wesco eecol",
+                    "emoji": true
+                  },
+                  "value": "wesco-eecol"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "BASF",
+                    "emoji": true
+                  },
+                  "value": "basf"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Danaher",
+                    "emoji": true
+                  },
+                  "value": "danaher"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Volvo - PartsASIST",
+                    "emoji": true
+                  },
+                  "value": "volvo-partsasist"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Volvo - Volvotrucks",
+                    "emoji": true
+                  },
+                  "value": "volvo-volvotrucks"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Volvo - Macktrucks",
+                    "emoji": true
+                  },
+                  "value": "volvo-macktrucks"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Delta",
+                    "emoji": true
+                  },
+                  "value": "delta"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Graco MyBenefits",
+                    "emoji": true
+                  },
+                  "value": "graco-mybenefits"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Caesars",
+                    "emoji": true
+                  },
+                  "value": "caesars"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Zeiss",
+                    "emoji": true
+                  },
+                  "value": "zeiss"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Orora Packaging Solutions",
+                    "emoji": true
+                  },
+                  "value": "orora-packaging-solutions"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "UHG - Surest",
+                    "emoji": true
+                  },
+                  "value": "uhg-surest"
+                },
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "PfizerStride - K12",
+                    "emoji": true
+                  },
+                  "value": "pfizerstride-k12"
                 }
               ],
               "action_id": "project_select-action"

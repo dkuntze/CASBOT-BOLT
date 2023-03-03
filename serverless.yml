@@ -15,6 +15,11 @@ functions:
       - http:
           path: slack/events
           method: post
+  customer:
+    handler: customer-list.handler
+    events:
+      - http:
+          path: slack/customer-list
+          method: get
 plugins:
-  - serverless-dynamodb-local
   - serverless-offline
